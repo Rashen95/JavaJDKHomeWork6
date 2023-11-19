@@ -21,16 +21,13 @@ public class Main {
             int playerChange = random.nextInt(0, 3);
 
             // Ведущий делает выбор на двери, которая не является ни машиной ни выбором игрока
-            int montiChange = random.nextInt(0, 3);
-            while (montiChange == playerChange || montiChange == carIndex) {
-                montiChange = random.nextInt(0, 3);
+            int leadingChange = random.nextInt(0, 3);
+            while (leadingChange == playerChange || leadingChange == carIndex) {
+                leadingChange = random.nextInt(0, 3);
             }
 
             // Игрок меняет выбор
-            int playerChangeNew = random.nextInt(0, 3);
-            while (playerChangeNew == playerChange || playerChangeNew == montiChange) {
-                playerChangeNew = random.nextInt(0, 3);
-            }
+            int playerChangeNew = 3 - playerChange - leadingChange;
 
             // Проверка на выигрыш
             if (playerChangeNew == carIndex) {
@@ -51,7 +48,7 @@ public class Main {
                 lose++;
             }
         }
-        System.out.printf("Количество побед равно %d (%d процентов)\n", win, (int) (win * 1.0 / numberLoop * 100));
-        System.out.printf("Количество поражений равно %d (%d процентов)\n", lose, (int) (lose * 1.0 / numberLoop * 100));
+        System.out.printf("Количество побед равно %d (%d процентов)\n", win, Math.round(win * 1.0 / numberLoop * 100));
+        System.out.printf("Количество поражений равно %d (%d процентов)\n", lose, Math.round(lose * 1.0 / numberLoop * 100));
     }
 }
